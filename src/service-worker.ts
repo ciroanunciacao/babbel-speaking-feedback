@@ -16,9 +16,7 @@ chrome.webRequest.onBeforeRequest.addListener(
         audio: request.audio_file_base64,
       };
 
-      if (!lastAudioMap[tabId]) {
-        lastAudioMap[tabId] = audioInfo;
-      }
+      lastAudioMap[tabId] = audioInfo;
 
       console.log(lastAudioMap);
     }
