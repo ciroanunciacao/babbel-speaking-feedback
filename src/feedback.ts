@@ -68,18 +68,29 @@ const addAudioFeedbackButton = async (node: Node) => {
 };
 
 const removeAudioFeedbackButton = async () => {
-  const button = document.querySelector(`[${SELECTOR_ATTR}=${FEEDBACK_SELECTOR_VALUE}]`);
-  if (button) {
-    button.parentNode.removeChild(button);
+  const list = document.querySelectorAll(`[${SELECTOR_ATTR}=${FEEDBACK_SELECTOR_VALUE}]`);
+  if (list) {
+    list.forEach((button) => {
+      button.parentNode.removeChild(button);
+    });
   }
 };
 
 const observer = new MutationObserver(mutations => {
-  const handleChildListMutations = (nodes: NodeList) => {
+  const handleAddedNodes = (nodes: NodeList) => {
     for (const node of nodes) {
       const el = <Element>node;
       if (el.getAttribute && el.getAttribute(SELECTOR_ATTR) === PLAYABLE_SELECTOR_VALUE && el.parentElement) {
         addAudioFeedbackButton(node);
+      }
+    }
+  }
+
+  const handleRemovedNodes = (nodes: NodeList) => {
+    for (const node of nodes) {
+      const el = <Element>node;
+      if (el.getAttribute && el.getAttribute(SELECTOR_ATTR) === PLAYABLE_SELECTOR_VALUE) {
+        removeAudioFeedbackButton();
       }
     }
   }
@@ -98,10 +109,11 @@ const observer = new MutationObserver(mutations => {
   for (const mutation of mutations) {
     switch (mutation.type) {
       case 'childList':
-        handleChildListMutations(mutation.addedNodes)
+        handleAddedNodes(mutation.addedNodes);
+        handleRemovedNodes(mutation.removedNodes);
         break;
       case 'attributes':
-        handleAttributesMutations(mutation.target, mutation.attributeName)
+        handleAttributesMutations(mutation.target, mutation.attributeName);
         break;
       default:
         break;
