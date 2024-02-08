@@ -1,0 +1,35 @@
+{
+  "name": "babbel-speaking-feedback",
+  "version": "1.0.0",
+  "description": "Extension to provide user recording feedback during speaking activities in lessons or reviews.",
+  "scripts": {
+    "start": "webpack --watch --config webpack.dev.cjs",
+    "build": "webpack --config webpack.prod.cjs",
+    "lint": "eslint --ext .ts,.js --max-warnings=0 .",
+    "prettier": "prettier --write",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "license": "MIT",
+  "author": "Ciro Anunciação<ciro@ciro.in>",
+  "devDependencies": {
+    "@babel/core": "^7.23.9",
+    "@babel/plugin-transform-runtime": "^7.23.9",
+    "@babel/preset-env": "^7.23.9",
+    "@babel/preset-typescript": "^7.23.3",
+    "@types/chrome": "^0.0.260",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "babel-loader": "^9.1.3",
+    "copy-webpack-plugin": "^12.0.2",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-webpack-plugin": "^4.0.1",
+    "ts-loader": "^9.5.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3",
+    "webpack": "^5.90.1",
+    "webpack-cli": "^5.1.4"
+  },
+  "browserslist": "> 0.25%, not dead"
+}

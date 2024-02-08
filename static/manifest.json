@@ -1,0 +1,48 @@
+{
+  "manifest_version": 3,
+  "name": "Babbel Speaking Feedback",
+  "description": "Extension to provide user recording feedback during speaking activities in lessons or reviews.",
+  "version": "1.0",
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": {
+      "16": "/icons/16x.png",
+      "32": "/icons/32x.png",
+      "48": "/icons/48x.png",
+      "128": "/icons/128x.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "js": ["feedback.js"],
+      "css": ["feedback.css"],
+      "matches": [
+        "https://my.babbel.com/*/lesson-player/*",
+        "https://my.babbel.cn/*/lesson-player/*"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "background": {
+    "service_worker": "serviceWorker.js"
+  },
+  "permissions": ["webRequest"],
+  "host_permissions": [
+    "*://my.babbel.com/*",
+    "*://my.babbel.cn/*",
+    "*://api.babbel-staging.io/*",
+    "*://api.babbel.io/*"
+  ],
+  "externally_connectable": {
+    "matches": [
+      "*://my.babbel.com/*",
+      "*://my.babbel.cn/*"
+    ]
+  },
+  "icons": {
+    "16": "/icons/16x.png",
+    "32": "/icons/32x.png",
+    "48": "/icons/48x.png",
+    "128": "/icons/128x.png"
+  }
+}
